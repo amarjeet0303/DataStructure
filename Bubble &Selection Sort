@@ -1,0 +1,92 @@
+#include<iostream>
+using namespace std;
+#include<stdlib.h>
+class sort
+{
+public:
+	void selcsort(float[],int);
+	void bubble(float[],int);
+	void display(float[],int);
+};
+void sort::selcsort(float a[],int n)
+{
+	int i,j,k;
+	float temp;
+	for(i=0;i<n-1;i++)
+	{
+		k=i;
+		for(j=i+1;j<n;j++)
+		{
+			if(a[j]<a[k])
+				k=j;
+			if(k!=i)
+			{
+				temp=a[i];
+				a[i]=a[k];
+				a[k]=temp;
+			}
+		}
+	}
+}
+void sort::bubble(float a[],int n)
+{
+	int i,j,temp;
+	int flag=1;
+	for(i=1;i<n&&flag==1;i++)
+	{
+		flag=0;
+		for(j=0;j<n-1;j++)
+		{
+			if(a[j]>a[j+1])
+			{
+				temp=a[j];
+				a[j]=a[j+1];
+				a[j+1]=temp;
+				flag=1;
+
+			}
+		}
+	}
+}
+void sort::display(float a[],int n)
+{
+	int i;
+	for(i=n-1;i>=n-5;i--)
+	{
+		cout<<"\n"<<a[i];
+	}
+}
+int main()
+{
+	int n,i,ch;
+	float a[20];
+	cout<<"\n how many student u want to insert";
+	cin>>n;
+	cout<<"\n enter the marks";
+	for(i=0;i<n;i++)
+	{
+		cin>>a[i];
+	}
+	sort s;
+	do
+	{
+		cout<<"\n ------main menu------";
+		cout<<"\n1.selection sort\n2.bubble sort\n3.exit";
+		cout<<"\n enter u r choice";
+		cin>>ch;\
+		switch(ch)
+		{
+		case 1:s.selcsort(a,n);
+		       s.display(a,n);
+		       break;
+		case 2:s.bubble(a,n);
+		       s.display(a,n);
+		       break;
+		case 3:exit(0);
+	           break;
+		default:cout<<"\n invalid choice";
+		}
+	}while(ch!=3);
+
+	return 0;
+}
