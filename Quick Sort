@@ -1,0 +1,73 @@
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+class sort
+{
+public:
+	float partition(float a[],int,int);
+	void display(float a[],int);
+	void quicksort(float[],int,int);
+};
+
+float partition(float a[10],int l,int u)
+{
+	int i,j;
+	float v,temp;
+	v=a[l];
+	i=l;
+	j=u+1;
+	do
+	{
+		do
+		   i++;
+		while(a[i]<v&&i<=u);
+
+	do
+		j--;
+	while(v<a[j]);
+	   if(i<j)
+	   {
+		temp=a[i];
+		a[i]=a[j];
+		a[j]=temp;
+	   }
+	}while(i<j);
+	a[l]=a[j];
+	a[j]=v;
+	return (j);
+}
+void  display(float a[10], int n)
+{
+	int i;
+	   cout<<"\n Top 5 scores of student";
+		for(i=n-1;i>=n-5;i--)
+		{
+			cout<<"\n "<<a[i];
+		}
+}
+void quicksort(float a[10],int l,int u)
+{
+	 int j;
+	 if(l<u)
+	 {
+		 j=partition(a,l,u);
+		 quicksort(a,l,j-1);
+		 quicksort(a,j+1,u);
+	 }
+}
+int main()
+{
+ float a[10];
+ int n,i;
+ cout<<"\n Enter no of students=";
+ cin>>n;
+ 
+ for(i=0;i<n;i++)
+ {
+	 cout<<"\n Enter percentage of student=";
+	  cin>>a[i];
+ }
+  quicksort(a,0,n-1);
+   display(a,n);
+  return 0;
+}
